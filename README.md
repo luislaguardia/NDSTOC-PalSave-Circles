@@ -55,4 +55,10 @@ Built by the NDSTOC PalSave team for financial empowerment and digital innovatio
 
 ---
 
+## 📝 License
+
+This project is licensed under the [MIT License](../LICENSE) © 2025 **hack-it! The New Era of Banking**.
+
+---
+
 Feel free to contribute or raise issues. Let’s modernize the Paluwagan system together!
