@@ -41,8 +41,9 @@ NDSTOC-PalSave-Circles/
 ├── assets/               # UI/UX assets, icons, logos
 └── README.md             # Project summary
 
-## 🚀 Getting Started
 ```
+
+## 🚀 Getting Started
 Coming soon – setup instructions for local deployment and contribution guidelines.
 
 ## 👥 Authors
