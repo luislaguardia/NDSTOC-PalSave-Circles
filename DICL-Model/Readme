@@ -40,3 +40,11 @@ DICL-Model/
 ├── predict.py              # API or CLI for generating predictions
 ├── evaluation.ipynb        # Jupyter notebook for model performance
 └── README.md               # This documentation file
+```
+
+## 🔮 Future Work
+
+- Integrate scoring output into the **PalSave** dashboard
+- Expand feature set with more behavioral and financial indicators
+- Compare multiple ML models (e.g., **XGBoost**, **Logistic Regression**, etc.)
+- Link scores with potential **micro-lending APIs**
