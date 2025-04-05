@@ -1,1 +1,42 @@
-readme
+# 🤖 DICL-Model (Data-Informed Credit Logic)
+
+This directory contains the implementation of the **Alternative Credit Scoring** model used in the **PalSave Circles** platform. It analyzes users' financial behavior within Paluwagan circles to generate a creditworthiness score, especially for users without traditional financial histories.
+
+---
+
+## 📊 What This Model Does
+
+- Tracks **user contribution patterns** within savings circles.
+- Evaluates **consistency**, **timeliness**, and **circle reliability**.
+- Uses **machine learning** (e.g., Random Forest) to predict credit behavior.
+- Provides a **credit score** based on user trustworthiness and participation.
+
+---
+
+## 🧠 Model Type (Current)
+
+The current implementation uses a **Random Forest Classifier**, a supervised learning model that performs well with structured behavioral data.
+
+### Features Used:
+- `total_contributions`
+- `on_time_payments`
+- `late_payments`
+- `number_of_circles_joined`
+- `average_contribution_amount`
+- `dropout_rate`
+
+### Target:
+- `is_trustworthy` → Boolean (1 for good standing, 0 otherwise)
+
+---
+
+## 🛠️ Files in This Folder
+
+```plaintext
+DICL-Model/
+├── data/                   # Sample datasets for training/testing
+├── model/                  # Saved model files (.pkl or similar)
+├── train_model.py          # Script for training the Random Forest model
+├── predict.py              # API or CLI for generating predictions
+├── evaluation.ipynb        # Jupyter notebook for model performance
+└── README.md               # This documentation file
