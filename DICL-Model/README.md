@@ -66,4 +66,7 @@ You can run the credit scoring model using Docker for easy setup.
    ```bash
    docker run -d -p 5000:5000 dicl-model
    ```
-
+4. **Open the app in your browser:**
+   ```bash
+   http://localhost:5000
+   ```
