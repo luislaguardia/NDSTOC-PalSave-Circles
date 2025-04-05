@@ -1,10 +1,10 @@
-# 🤖 DICL-Model (Data-Informed Credit Logic)
+#  DICL-Model (Data-Informed Credit Logic)
 
 This directory contains the implementation of the **Alternative Credit Scoring** model used in the **PalSave Circles** platform. It analyzes users' financial behavior within Paluwagan circles to generate a creditworthiness score, especially for users without traditional financial histories.
 
 ---
 
-## 📊 What This Model Does
+##  What This Model Does
 
 - Tracks **user contribution patterns** within savings circles.
 - Evaluates **consistency**, **timeliness**, and **circle reliability**.
@@ -13,7 +13,7 @@ This directory contains the implementation of the **Alternative Credit Scoring**
 
 ---
 
-## 🧠 Model Type (Current)
+##  Model Type (Current)
 
 The current implementation uses a **Random Forest Classifier**, a supervised learning model that performs well with structured behavioral data.
 
@@ -30,7 +30,7 @@ The current implementation uses a **Random Forest Classifier**, a supervised lea
 
 ---
 
-## 🛠️ Files in This Folder
+##  Files in This Folder
 
 ```plaintext
 DICL-Model/
@@ -44,15 +44,15 @@ DICL-Model/
 
 ---
 
-## 🚀 How to Run
+##  How to Run
 
 You can run the credit scoring model using Docker for easy setup.
 
-### 📦 Prerequisites
+###  Prerequisites
 
 - Install [Docker](https://www.docker.com/products/docker-desktop)
 
-### 🧪 Steps to Run with Docker
+###  Steps to Run with Docker
 
 1. **Navigate to the DICL-Model folder:**
    ```bash
@@ -70,7 +70,7 @@ You can run the credit scoring model using Docker for easy setup.
    ```bash
    http://localhost:5000
    ```
-## 🔮 Future Work
+##  Future Work
 
 - Integrate scoring output into the **PalSave** dashboard  
 - Expand feature set with more behavioral and financial indicators  
