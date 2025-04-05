@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credit Score Prediction</title>
+</head>
+<body>
+    <h1>Credit Score Prediction Form</h1>
+    <form id="predictForm">
+        <label for="Age">Age:</label><br>
+        <input type="number" id="Age" name="Age" required><br>
+
+        <label for="Total_Contributions">Total Contributions:</label><br>
+        <input type="number" step="0.01" id="Total_Contributions" name="Total_Contributions" required><br>
+
+        <label for="OnTime_Payment_Rate">OnTime Payment Rate:</label><br>
+        <input type="number" step="0.01" id="OnTime_Payment_Rate" name="OnTime_Payment_Rate" required><br>
+
+        <label for="Missed_Payments">Missed Payments:</label><br>
+        <input type="number" id="Missed_Payments" name="Missed_Payments" required><br>
+
+        <label for="Paluwagan_Duration">Paluwagan Duration (months):</label><br>
+        <input type="number" id="Paluwagan_Duration" name="Paluwagan_Duration" required><br>
+
+        <label for="GCash_Activity_Score">GCash Activity Score:</label><br>
+        <input type="number" step="0.01" id="GCash_Activity_Score" name="GCash_Activity_Score" required><br>
+
+        <label for="Online_Transaction_Score">Online Transaction Score:</label><br>
+        <input type="number" step="0.01" id="Online_Transaction_Score" name="Online_Transaction_Score" required><br>
+
+        <label for="Circle_Member_Rating">Circle Member Rating:</label><br>
+        <input type="number" step="0.1" id="Circle_Member_Rating" name="Circle_Member_Rating" required><br>
+
+        <label for="Employment_Type">Employment Type:</label><br>
+        <select id="Employment_Type" name="Employment_Type" required>
+            <option value="Employed">Employed</option>
+            <option value="Freelance">Freelance</option>
+            <option value="Informal">Self-employed</option>
+            <option value="Unemployed">Unemployed</option>
+        </select><br>
+
+        <label for="Loan_Amount_Requested">Loan Amount Requested:</label><br>
+        <input type="number" step="0.01" id="Loan_Amount_Requested" name="Loan_Amount_Requested" required><br>
+
+        <label for="Payment_Frequency">Payment Frequency:</label><br>
+        <select id="Payment_Frequency" name="Payment_Frequency" required>
+            <option value="Weekly">Weekly</option>
+            <option value="Bi-Weekly">Bi-Weekly</option>
+            <option value="Monthly">Monthly</option>
+        </select><br>
+
+        <label for="Upfront_Payment_Factor">Upfront Payment Factor:</label><br>
+        <input type="number" step="0.01" id="Upfront_Payment_Factor" name="Upfront_Payment_Factor" required><br>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <h2>Prediction Result:</h2>
+    <p id="result"></p>
+
+    <script>
+        document.getElementById("predictForm").addEventListener("submit", async function(event) {
+            event.preventDefault(); // Prevent form from refreshing the page
+
+            // Collect the form data into a JavaScript object
+            const data = {
+                Age: parseInt(document.getElementById("Age").value),
+                Total_Contributions: parseFloat(document.getElementById("Total_Contributions").value),
+                OnTime_Payment_Rate: parseFloat(document.getElementById("OnTime_Payment_Rate").value),
+                Missed_Payments: parseInt(document.getElementById("Missed_Payments").value),
+                Paluwagan_Duration: parseInt(document.getElementById("Paluwagan_Duration").value),
+                GCash_Activity_Score: parseFloat(document.getElementById("GCash_Activity_Score").value),
+                Online_Transaction_Score: parseFloat(document.getElementById("Online_Transaction_Score").value),
+                Circle_Member_Rating: parseFloat(document.getElementById("Circle_Member_Rating").value),
+                Employment_Type: document.getElementById("Employment_Type").value,
+                Loan_Amount_Requested: parseFloat(document.getElementById("Loan_Amount_Requested").value),
+                Payment_Frequency: document.getElementById("Payment_Frequency").value,
+                Upfront_Payment_Factor: parseFloat(document.getElementById("Upfront_Payment_Factor").value)
+            };
+
+            console.log("Sending data:", data); // Debugging: log the data being sent
+
+            // Send the data to the FastAPI backend
+            try {
+                const response = await fetch("http://localhost:8000/predict", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                if (!response.ok) {
+                    const errorDetail = await response.json();
+                    throw new Error(`HTTP error! status: ${response.status}, detail: ${JSON.stringify(errorDetail)}`);
+                }
+
+                const result = await response.json();
+                console.log("Received result:", result); // Debugging: log the received result
+
+                // Check if the keys exist in the result
+                if (result.hasOwnProperty('Predicted Credit Score') && result.hasOwnProperty('Risk Level')) {
+                    // Display the result
+                    document.getElementById("result").innerHTML = `
+                        Predicted Credit Score: ${result['Predicted Credit Score']}<br>
+                        Risk Level: ${result['Risk Level']}
+                    `;
+                } else {
+                    console.error("Unexpected response structure:", result);
+                    document.getElementById("result").innerText = "Unexpected response structure.";
+                }
+            } catch (error) {
+                console.error("Error during fetch:", error);
+                document.getElementById("result").innerText = "There was an error submitting the form.";
+            }
+        });
+    </script>
+</body>
+</html>
