@@ -59,6 +59,7 @@ Built by the NDSTOC PalSave team for financial empowerment and digital innovatio
 
 This project is licensed under the [MIT License](../LICENSE) © 2025 **PalSave Circles Development Team**.  
 _Not intended for commercial use._
+
 ---
 
 Feel free to contribute or raise issues. Let’s modernize the Paluwagan system together!
