@@ -70,3 +70,9 @@ You can run the credit scoring model using Docker for easy setup.
    ```bash
    http://localhost:5000
    ```
+## 🔮 Future Work
+
+- Integrate scoring output into the **PalSave** dashboard  
+- Expand feature set with more behavioral and financial indicators  
+- Compare multiple ML models (e.g., **XGBoost**, **Logistic Regression**, etc.)  
+- Link scores with potential **micro-lending APIs**
