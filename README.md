@@ -32,6 +32,8 @@ Traditional financial institutions often exclude individuals without formal inco
 - It promotes **financial inclusion** through **behavior-driven scoring**.
 
 ## 📁 Repository Structure
+
+```plaintext
 NDSTOC-PalSave-Circles/
 ├── DICL-Model/           # Machine learning models for credit scoring
 ├── frontend/             # Web or mobile frontend implementation
@@ -40,7 +42,7 @@ NDSTOC-PalSave-Circles/
 └── README.md             # Project summary
 
 ## 🚀 Getting Started
-
+```
 Coming soon – setup instructions for local deployment and contribution guidelines.
 
 ## 👥 Authors
