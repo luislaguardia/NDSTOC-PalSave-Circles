@@ -38,7 +38,7 @@ NDSTOC-PalSave-Circles/
 ├── DICL-Model/           # Machine learning models for credit scoring
 ├── client/             # Web or mobile frontend implementation
 ├── server/              # Server-side logic, database operations
-├── assets/               # UI/UX assets, icons, logos
+├── docs/               # Team Presentation Pitch Slider
 └── README.md             # Project summary
 ```
 
