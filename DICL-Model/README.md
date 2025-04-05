@@ -34,17 +34,36 @@ The current implementation uses a **Random Forest Classifier**, a supervised lea
 
 ```plaintext
 DICL-Model/
-├── data/                   # Sample datasets for training/testing
-├── model/                  # Saved model files (.pkl or similar)
-├── train_model.py          # Script for training the Random Forest model
-├── predict.py              # API or CLI for generating predictions
-├── evaluation.ipynb        # Jupyter notebook for model performance
-└── README.md               # This documentation file
+├── Dockerfile                 # Docker configuration to containerize the model
+├── README.md                  # This documentation file
+├── app.py                     # Flask API exposing the model for prediction
+├── credit_score_model.joblib  # Trained Random Forest model
+├── requirements.txt           # Python dependencies
+└── set_data.html              # Web form for submitting prediction input
 ```
 
-## 🔮 Future Work
+---
 
-- Integrate scoring output into the **PalSave** dashboard
-- Expand feature set with more behavioral and financial indicators
-- Compare multiple ML models (e.g., **XGBoost**, **Logistic Regression**, etc.)
-- Link scores with potential **micro-lending APIs**
+## 🚀 How to Run
+
+You can run the credit scoring model using Docker for easy setup.
+
+### 📦 Prerequisites
+
+- Install [Docker](https://www.docker.com/products/docker-desktop)
+
+### 🧪 Steps to Run with Docker
+
+1. **Navigate to the DICL-Model folder:**
+   ```bash
+   cd NDSTOC-PalSave-Circles/DICL-Model
+   ```
+2. **Build the Docker image:**
+   ```bash
+   docker build -t dicl-model .
+   ```
+3. **Run the Docker container:**
+   ```bash
+   docker run -d -p 5000:5000 dicl-model
+   ```
+
