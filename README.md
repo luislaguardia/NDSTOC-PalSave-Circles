@@ -57,7 +57,7 @@ Built by the NDSTOC PalSave team for financial empowerment and digital innovatio
 
 ## License
 
-This project is licensed under the [MIT License](../LICENSE) © 2025 **PalSave Circles Development Team**.  
+This project is licensed under the [MIT License](LICENSE) © 2025 **PalSave Circles Development Team**.  
 _Not intended for commercial use._
 
 ---
