@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Paluwagan App - Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    .chart-container {
+      width: 150px;
+      height: 150px;
+      position: relative;
+      margin: auto;
+    }
+    #payoutChart {
+      width: 100% !important;
+      height: 100% !important;
+    }
+    .progress-overlay {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      color: white;
+      background: #1e1e1e;
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 2;
+    }
+  </style>
+  
+</head>
+
+<body>
+  <div class="app-container">
+
+    <!-- ============================
+         HOME SECTION 
+    ============================= -->
+    
+    <div id="home-section" class="screen active">
+      <h2>Welcome, User!</h2>
+
+      <!-- Total Payout Card -->
+      <div class="wallet-balance-card" style="background:#22c55e;">
+        <h1>₱8,000</h1>
+        <p>Total payout</p>
+      </div>
+
+      <p class="next-payout" style="text-align:center; border-bottom: 1px solid #444; padding-bottom: 1rem;">
+        Next payout in 3 days
+      </p>
+
+      <!-- Active Circles -->
+      <h3 class="section-title" style="text-align:left; margin-top:1rem;">Active Circles</h3>
+
+      <!-- Circle 1 -->
+      <div class="circle-card green-card">
+        <div class="circle-count">1/4</div>
+        <div class="circle-info">
+          <h4>Iber’s Circle</h4>
+          <p>₱1,000 / 3 • ₱4,000/3 <br/> 👥 4<br/><span style="color: #22c55e;">Paid for this cycle.</span></p>
+        </div>
+        <button class="btn-sm" onclick="window.location.href='circle_track.html'">Track</button>
+      </div>
+
+      <!-- Circle 2 -->
+      <div class="circle-card yellow-card">
+        <div class="circle-count">3/5</div>
+        <div class="circle-info">
+          <h4>Robbies’ Circle</h4>
+          <p>₱1,000 / 3 • ₱4,000/3 <br/> 👥 5<br/><span style="color: #facc15;">Due this week!</span></p>
+        </div>
+        <button class="btn-sm yellow">Contribute</button>
+      </div>
+
+<!--  -->
+      <!-- Merged code: dashboard.html + Iber's Circle Track -->
+<!-- NOTE: Embedded section from circle_track.txt into dashboard -->
+<!-- Original dashboard and style already included -->
+<!-- Here's only the added TRACK SECTION -->
+
+<!-- Inside the body, after other sections like home-section -->
+<div id="circle-track-section" class="screen active">
+  <h2>Iber's Circle</h2>
+  <div class="chart-container">
+    <canvas id="payoutChart"></canvas>
+    <div class="progress-overlay">
+      <h3>₱8,000</h3>
+      <p>₱2,000 more to payout</p>
+    </div>
+  </div>
+  <p class="next-payout" style="text-align:center; margin:1rem 0;"><strong>Next payout in: 3 days</strong></p>
+  <button class="btn-full" style="max-width: 200px; margin: 1rem auto; display:block;">Contribute</button>
+
+  <div class="details" style="display: flex; gap: 1rem; justify-content: center; margin: 1rem 0;">
+    <div class="detail-box">
+      <p>Contribution</p>
+      <h4>₱1,000 per week</h4>
+    </div>
+    <div class="detail-box">
+      <p>Payout</p>
+      <h4>₱10,000 every week</h4>
+    </div>
+  </div>
+
+  <div class="payout-progress" style="text-align:center; margin-bottom:1rem;">
+    <span class="step green">1</span>
+    <span class="step yellow">2</span>
+    <span class="step gray">3</span>
+    <span class="step gray">4</span>
+  </div>
+
+  <div class="participants">
+    <table class="styled-table">
+      <thead>
+        <tr>
+          <th>Participants</th>
+          <th>Contributed</th>
+          <th>Turn status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Maria A*******</td><td>✅</td><td>Claimed</td></tr>
+        <tr><td>Jose B*******</td><td>✅</td><td>Not Paid</td></tr>
+        <tr><td>Isabel J*******</td><td>❌</td><td>Not Paid</td></tr>
+        <tr><td>Miguel Jordan</td><td>❌</td><td>Not Paid</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+  // Load payoutChart when the section becomes visible
+  function showSection(sectionId) {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.getElementById(sectionId).classList.add('active');
+
+    // Only re-render chart if it's not already rendered
+    if (sectionId === 'circle-track-section' && !window.payoutChart) {
+      const ctx = document.getElementById('payoutChart').getContext('2d');
+      window.payoutChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+          labels: ['Collected', 'Remaining'],
+          datasets: [{
+            data: [8000, 2000],
+            backgroundColor: ['yellow', '#444'],
+            borderWidth: 0
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          cutout: '70%',
+          plugins: { legend: { display: false } }
+        }
+      });
+    }
+  }
+</script>
+
+
+
+
+<!--  -->
+
+
+
+      <!-- PARTICIPANT CHART & CIRCLE PROGRESS -->
+      <div class="participant-progress-section">
+        <h3>Participant Overview</h3>
+        <div class="chartCard">
+          <div class="chartBox">
+            <canvas id="participantChart"></canvas>
+          </div>
+        </div>
+      </div>
+      <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+      <script>
+        const participantData = {
+          labels: ['Paid', 'Pending'],
+          datasets: [{
+            label: 'Participant Status',
+            data: [1, 3],
+            backgroundColor: ['#22c55e', '#facc15'],
+            borderWidth: 1
+          }]
+        };
+
+        const participantConfig = {
+          type: 'doughnut',
+          data: participantData,
+          options: {
+            responsive: true,
+            plugins: {
+              legend: { position: 'bottom' },
+              title: {
+                display: true,
+                text: 'Circle Participation Progress'
+              }
+            }
+          }
+        };
+
+        new Chart(document.getElementById('participantChart'), participantConfig);
+      </script>
+    </div>
+
+    <!-- new section for cirlce -->
+
+
+    <!-- ============================
+         PALUWAGAN SECTION 
+    ============================= -->
+
+  <!-- PALUWAGAN SECTION -->
+  <div id="paluwagan-section" class="screen">
+
+    <h2>Paluwagan</h2>
+
+    <!-- Overview Card -->
+    <div class="overview-card highlight-card">
+      <h1>2/5</h1>
+      <p>Circles joined</p>
+      <small>You can join within the circle limit.</small>
+    </div>
+
+    <!-- Current Contribution Cycle -->
+    <div class="section-header">
+      <h3>Current Contribution Cycle</h3>
+      <span class="info-icon">ℹ️</span>
+    </div>
+    <div class="contribution-box styled-box">
+      <span class="amount">₱1,000</span>
+      <button class="btn-small yellow">Contribute</button>
+    </div>
+
+    <hr />
+
+    <!-- Current Circles -->
+    <h3>Current Circles</h3>
+
+    <!-- Iber's Circle -->
+    <div class="circle-card styled-box">
+      <div class="circle-badge green">1/4</div>
+      <div class="circle-details">
+        <h4>Iber’s Circle</h4>
+        <p class="circle-desc">₱1,000 / 3 • ₱4,000 / 3</p>
+        <p class="members">👥 4</p>
+        <p class="status-text green">Paid for this cycle.</p>
+      </div>
+      <button class="btn-small green">Track</button>
+    </div>
+
+    <!-- Robbies’ Circle -->
+    <div class="circle-card styled-box">
+      <div class="circle-badge yellow">3/5</div>
+      <div class="circle-details">
+        <h4>Robbies’ Circle</h4>
+        <p class="circle-desc">₱1,000 / 3 • ₱4,000 / 3</p>
+        <p class="members">👥 5</p>
+        <p class="status-text yellow">Due this week!</p>
+      </div>
+      <button class="btn-small yellow">Contribute</button>
+    </div>
+
+    <hr />
+
+    <!-- Paluwagan History -->
+    <h3>Paluwagan history</h3>
+    <table class="circle-history styled-table">
+      <thead>
+        <tr>
+          <th>Circle name</th>
+          <th>Payout</th>
+          <th>End date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Cristian’s Circle</td><td>₱8,000/7</td><td>12/07/2024</td></tr>
+        <tr><td>Dhan’s Circle</td><td>₱8,000/7</td><td>12/07/2024</td></tr>
+        <tr><td>Kyle’s Circle</td><td>₱8,000/7</td><td>12/07/2024</td></tr>
+      </tbody>
+    </table>
+
+    <hr />
+
+    <!-- Circles to Join -->
+    <div class="section-header">
+      <h3>Circles to join</h3>
+      <span class="info-icon">ℹ️</span>
+    </div>
+
+    <!-- Joinable Circles -->
+    <div class="circle-card styled-box">
+      <div class="circle-badge green">👥 4</div>
+      <div class="circle-details">
+        <h4>Jasper’s Circle</h4>
+        <p class="circle-desc">₱1,000 / 3 • <span class="highlight">₱4,000 / 3</span></p>
+      </div>
+      <button class="btn-small green">Join</button>
+    </div>
+
+    <div class="circle-card styled-box">
+      <div class="circle-badge green">👥 4</div>
+      <div class="circle-details">
+        <h4>Gelo’s Circle</h4>
+        <p class="circle-desc">₱1,000 / 3 • <span class="highlight">₱4,000 / 3</span></p>
+      </div>
+      <button class="btn-small green">Join</button>
+    </div>
+
+  </div>
+
+    <!-- ============================
+         CIRCLE CREATION SECTION 
+    ============================= -->
+    <div id="circle-create" class="screen hidden">
+      <h2 class="section-title">Configure Circle</h2>
+
+      <label>Circle’s Name</label>
+      <input type="text" placeholder="Type here..." class="input" />
+
+      <label>Payout</label>
+      <input type="number" placeholder="₱ e.g. 1,000" class="input" />
+
+      <label>Payout cycle frequency</label>
+      <div class="btn-group">
+        <button class="btn-small">3 days</button>
+        <button class="btn-small">7 days</button>
+        <button class="btn-small">14 days</button>
+      </div>
+
+      <label>Participants</label>
+      <div class="participants-control">
+        <button onclick="adjustParticipants(-1)">−</button>
+        <span id="participant-count">2</span>
+        <button onclick="adjustParticipants(1)">+</button>
+      </div>
+      <p style="text-align:center; margin-top: 0.5rem;">Participants</p>
+
+      <button class="btn-full green" onclick="alert('Circle created!')">Create circle</button>
+      <button class="btn-secondary" onclick="showSection('paluwagan-section')">← Back</button>
+    </div>
+
+    <!-- ============================
+         WALLET SECTION 
+    ============================= -->
+    <div id="wallet-section" class="screen">
+      <h2 class="section-title">Wallet</h2>
+
+      <div class="wallet-balance-card">
+        <h1>₱8,000</h1>
+        <p>Available balance</p>
+      </div>
+
+      <!-- Wallet Actions -->
+      <div class="wallet-actions">
+        <div class="wallet-action">
+          <img src="icons/qr-code.png" alt="QR withdrawal">
+          <span>QR withdrawal</span>
+        </div>
+        <div class="wallet-action">
+          <img src="icons/landmark.png" alt="Fund transfer">
+          <span>Fund transfer</span>
+        </div>
+        <div class="wallet-action">
+          <img src="icons/banknote-arrow-up.png" alt="Deposit">
+          <span>Deposit</span>
+        </div>
+      </div>
+
+      <!-- Transaction History -->
+      <h3 class="wallet-subtitle">Transactions</h3>
+      <table class="wallet-table">
+        <thead>
+          <tr>
+            <th>Type</th>
+            <th>Balance</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>QR withdrawal</td><td>-₱8,000</td><td>12/07/2024</td></tr>
+          <tr><td>Fund transfer</td><td>-₱8,000</td><td>12/07/2024</td></tr>
+          <tr><td>Deposit</td><td>+₱8,000</td><td>12/07/2024</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ============================
+         REWARDS / PROFILE SECTION 
+    ============================= -->
+    <div id="rewards-section" class="screen active">
+      <h2 class="section-title">My Profile</h2>
+
+      <!-- Profile Header -->
+      <div class="profile-header-card">
+        <div class="profile-header-left">
+          <div class="profile-avatar-img"></div>
+          <div>
+            <h3 class="profile-username">Frank Abegnale</h3>
+            <p class="profile-role">Member</p>
+          </div>
+        </div>
+        <button class="edit-btn">Edit</button>
+      </div>
+
+      <!-- Credit Score Card -->
+      <div class="credit-card" onclick="openCreditModal()">
+        <h3 class="creditScore">My Credit Score</h3>
+        <div class="gauge">
+          <div class="gauge-score">700</div>
+          <div class="gauge-status green">Very Good</div>
+        </div>
+        <div class= "chartCard">
+          <div class= "chartBox">
+            <canvas id="mychart"></canvas>
+          </div>
+        </div>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script>
+          
+          const data = {
+            labels: ['Very Poor', 'Poor', 'Fair', 'Good', 'Very Good'],
+            datasets: [{
+              label: 'Credit Score',
+              data: [20, 30, 25, 15, 10],
+              backgroundColor: [
+                '#ff0000',
+                '#ff7f00',
+                '#ffff00',
+                '#7fff00',
+                '#00ff00'
+              ],
+              borderColor: [
+                '#ff0000',
+                '#ff7f00',
+                '#ffff00',
+                '#7fff00',
+                '#00ff00'
+              ],
+              borderWidth: 1,
+              cutout: '90%',
+              circumference: 180,
+              rotation: 270,
+            }] 
+          }; 
+
+          const config = {
+            type: 'doughnut',
+            data: data,
+            options: {
+              responsive: true,
+              plugins: {
+                legend: {
+                  position: false
+                },
+                title: {
+                  display: true,
+                  text: 'Credit Score'
+                }
+              }
+            },
+          };
+
+          const myChart = new Chart(
+            document.getElementById('mychart'),
+            config
+          );
+
+        </script>
+        <p class="credit-help">Tap to view full details</p>
+      </div>
+    </div>
+
+    <!-- Credit Modal -->
+    <div id="creditModal" class="modal hidden" onclick="closeModalOutside(event)">
+      <div class="modal-content" onclick="event.stopPropagation()">
+        <h3 class="modal-title">Your Credit Score</h3>
+        <div class="modal-score">750</div>
+        <div class="modal-status">Very Good</div>
+        <p class="modal-date">Updated: July 23, 2023</p>
+        <button class="btn-full">View Full Details</button>
+        <p class="modal-refresh">Refreshes in 28–30 days</p>
+        <button class="modal-close" onclick="closeCreditModal()">Close</button>
+      </div>
+    </div>
+
+    <!-- ============================
+         SETTINGS SECTION 
+    ============================= -->
+    <div id="settings-section" class="screen">
+      <h2 class="section-title">Settings</h2>
+
+      <!-- Personal Info -->
+      <div class="settings-group">
+        <h4>Personal information</h4>
+
+        <label>Email</label>
+        <div class="input-edit">
+          <input type="email" value="email@gmail.com" readonly />
+          <button onclick="editField(this)">✏️</button>
+        </div>
+
+        <label>Password</label>
+        <div class="input-edit">
+          <input type="password" value="**********" readonly />
+          <button onclick="editField(this)">✏️</button>
+        </div>
+
+        <label>Phone number</label>
+        <div class="input-edit">
+          <input type="tel" value="+639998887777" readonly />
+          <button onclick="editField(this)">✏️</button>
+        </div>
+      </div>
+
+      <hr />
+
+      <!-- Appearance Settings -->
+      <div class="settings-group">
+        <h4>Appearance</h4>
+        <div class="toggle-row">
+          <label>Darkmode</label>
+          <label class="switch">
+            <input type="checkbox" checked />
+            <span class="slider round"></span>
+          </label>
+        </div>
+      </div>
+
+      <hr />
+
+      <!-- About the App -->
+      <div class="settings-group">
+        <h4>About</h4>
+        <p><strong>App version</strong><span style="float:right;">v1.0.0.0</span></p>
+        <p><strong>Developer</strong><span style="float:right;">NDSTOC</span></p>
+        <p><strong>Contractor</strong><span style="float:right;">Bank</span></p>
+        <p><strong>Contact developer</strong><span style="float:right;">dev@contact.cm</span></p>
+      </div>
+
+      <hr />
+
+      <!-- Logout -->
+      <div style="margin-top: 1rem; text-align: left;">
+        <button onclick="handleLogout()" style="color: red; background: none; border: none; font-size: 1rem;">
+          Logout
+        </button>
+      </div>
+    </div>
+
+    <!-- ============================
+         BOTTOM NAVIGATION 
+    ============================= -->
+    <nav class="bottom-nav">
+      <a onclick="showSection('home-section')" class="nav-item selected" data-section="home-section">
+        <img src="icons/house.png" alt="Home" />
+        <span>Home</span>
+      </a>
+      <a onclick="showSection('paluwagan-section')" class="nav-item" data-section="paluwagan-section">
+        <img src="icons/users.png" alt="Paluwagan" />
+        <span>Paluwagan</span>
+      </a>
+      <a onclick="showSection('wallet-section')" class="nav-item" data-section="wallet-section">
+        <img src="icons/wallet-minimal.png" alt="Wallet" />
+        <span>Wallet</span>
+      </a>
+      <a onclick="showSection('rewards-section')" class="nav-item" data-section="rewards-section">
+        <img src="icons/gift.png" alt="Rewards" />
+        <span>Profile</span>
+      </a>
+      <a onclick="showSection('settings-section')" class="nav-item" data-section="settings-section">
+        <img src="icons/settings.png" alt="Settings" />
+        <span>Settings</span>
+      </a>
+    </nav>
+
+  </div>
+
+  <script src="script.js"></script>
+
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Track Button in IBer section
+        const trackBtn = document.getElementById('trackButton');
+        if (trackBtn) {
+            trackBtn.addEventListener('click', function () {
+                // Hide all sections
+                const sections = document.querySelectorAll('.section');
+                sections.forEach(section => {
+                    section.style.display = 'none';
+                });
+    
+                // Show the circle-track-section
+                const circleTrackSection = document.getElementById('circle-track-section');
+                if (circleTrackSection) {
+                    circleTrackSection.style.display = 'block';
+                }
+            });
+        }
+    });
+    </script>
+    
+</body>
+</html>

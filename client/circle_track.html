@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Paluwagan Participant</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .chart-container {
+            width: 150px;
+            height: 150px;
+            position: relative;
+            margin: auto;
+        }
+        #payoutChart {
+            width: 100% !important;
+            height: 100% !important;
+        }
+        .progress-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white;
+            background: #1e1e1e;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Iber's Circle</h2>
+        <div class="chart-container">
+            <canvas id="payoutChart"></canvas>
+            <div class="progress-overlay">
+                <h3>₱8,000</h3>
+                <p>₱2,000 more to payout</p>
+            </div>
+        </div>
+        <p>Next payout in: <strong>3 days</strong></p>
+        <button class="contribute-btn">Contribute</button>
+        <div class="details">
+            <div class="detail-box">
+                <p>Contribution</p>
+                <h4>₱1,000 per week</h4>
+            </div>
+            <div class="detail-box">
+                <p>Payout</p>
+                <h4>₱10,000 every week</h4>
+            </div>
+        </div>
+        <div class="payout-progress">
+            <span class="step active">1</span>
+            <span class="step ongoing">2</span>
+            <span class="step">3</span>
+            <span class="step">4</span>
+        </div>
+        <div class="participants">
+            <table>
+                <tr>
+                    <th>Participants</th>
+                    <th>Contributed</th>
+                    <th>Turn status</th>
+                </tr>
+                <tr>
+                    <td>Maria A*******</td>
+                    <td>✅</td>
+                    <td>Claimed</td>
+                </tr>
+                <tr>
+                    <td>Jose B*******</td>
+                    <td>✅</td>
+                    <td>Not Paid</td>
+                </tr>
+                <tr>
+                    <td>Isabel J*******</td>
+                    <td>❌</td>
+                    <td>Not Paid</td>
+                </tr>
+                <tr>
+                    <td>Miguel Jordan</td>
+                    <td>❌</td>
+                    <td>Not Paid</td>
+                </tr>
+            </table>
+        </div>
+        <div class="nav-bar">
+            <button>Stats</button>
+            <button>Rewards</button>
+            <button class="active">Home</button>
+            <button>Paluwagan</button>
+            <button>Wallet</button>
+        </div>
+    </div>
+    <script>
+        const ctx = document.getElementById('payoutChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Collected', 'Remaining'],
+                datasets: [{
+                    data: [8000, 2000],
+                    backgroundColor: ['yellow', '#444'],
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: '70%',
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                }
+            }
+        });
+    </script>
+
+    
+</body>
+</html>

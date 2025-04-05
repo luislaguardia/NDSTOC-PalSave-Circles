@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Circles - Login</title>
+  <link rel="stylesheet" href="login-style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div class="app-container">
+
+    <!-- Splash Screen -->
+    <div id="splash-screen" class="screen active">
+      <h1>Circles</h1>
+      <button onclick="showScreen('login-screen')">Get started ></button>
+    </div>
+
+    <!-- Login Screen -->
+    <div id="login-screen" class="screen hidden">
+      <h2>Login</h2>
+      <label>Email</label>
+      <input type="email" id="login-email" placeholder="Type here..." />
+      <label>Password</label>
+      <input type="password" id="login-password" placeholder="Type here..." />
+      <button onclick="handleLogin()">Login</button>
+      <button class="secondary" onclick="showScreen('register-screen')">Create an account</button>
+    </div>
+
+    <!-- Register Screen -->
+    <div id="register-screen" class="screen hidden">
+      <h2>Create an account</h2>
+      <label>First name</label>
+      <input type="text" placeholder="Type here..." />
+      <label>Last name</label>
+      <input type="text" placeholder="Type here..." />
+      <label>Email</label>
+      <input type="email" placeholder="Type here..." />
+      <label>Password</label>
+      <input type="password" placeholder="Type here..." />
+      <button onclick="showScreen('verify-screen')">Proceed to verification</button>
+      <button class="secondary" onclick="showScreen('login-screen')">I already have an account</button>
+    </div>
+
+    <!-- ID Verification -->
+    <div id="verify-screen" class="screen hidden">
+        <h2>Verify account</h2>
+        <label>Valid ID</label>
+        <select>
+        <option>Barangay</option>
+        <option>National ID</option>
+        <option>Student ID</option>
+        </select>
+    
+        <div class="camera-wrapper">
+        <video id="camera-preview" autoplay playsinline></video>
+        <button onclick="captureID()">📸 Capture ID</button>
+        <canvas id="captured-id" class="hidden"></canvas>
+        <p id="camera-status" class="status-text"></p>
+        </div>
+    
+        <p class="why-id" onclick="showModal()">Why do I need to submit my ID?</p>
+        <button onclick="finishRegister()">Register account</button>
+        <button class="secondary" onclick="finishRegister()">Verify later</button>
+    </div>
+
+
+    <!-- Popup Modal -->
+    <div id="id-modal" class="modal hidden" onclick="hideModal()">
+      <div class="modal-content">
+        <h3>Why do I need to submit my ID?</h3>
+        <p>
+          To maintain a secure and trustworthy platform, we require users to submit a valid ID.
+          This step helps prevent fake accounts and ensures a safe experience for all members.
+        </p>
+        <p class="small">Tap anywhere to close this popup.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    function showScreen(id) {
+      document.querySelectorAll('.screen').forEach(screen => {
+        screen.classList.add('hidden');
+      });
+      document.getElementById(id).classList.remove('hidden');
+      document.getElementById(id).classList.add('active');
+    }
+
+    function handleLogin() {
+      const email = document.getElementById('login-email').value;
+      const password = document.getElementById('login-password').value;
+      if (email === 'user@circles.com' && password === '1234') {
+        alert('Login successful!');
+        window.location.href = 'dashboard.html';
+      } else {
+        alert('Invalid email or password');
+      }
+    }
+
+    function scanID() {
+      alert('ID scanned successfully!');
+    }
+
+    function finishRegister() {
+      alert('Registration complete!');
+      window.location.href = 'dashboard.html';
+    }
+
+    function showModal() {
+      document.getElementById('id-modal').classList.remove('hidden');
+    }
+
+    function hideModal() {
+      document.getElementById('id-modal').classList.add('hidden');
+    }
+  </script>
+  <script src="login.js"></script>
+</body>
+</html>
