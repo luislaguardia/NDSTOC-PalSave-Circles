@@ -36,8 +36,8 @@ Traditional financial institutions often exclude individuals without formal inco
 ```plaintext
 NDSTOC-PalSave-Circles/
 ├── DICL-Model/           # Machine learning models for credit scoring
-├── frontend/             # Web or mobile frontend implementation
-├── backend/              # Server-side logic, database operations
+├── client/             # Web or mobile frontend implementation
+├── server/              # Server-side logic, database operations
 ├── assets/               # UI/UX assets, icons, logos
 └── README.md             # Project summary
 ```
