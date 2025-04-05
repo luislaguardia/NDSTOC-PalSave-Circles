@@ -40,7 +40,6 @@ NDSTOC-PalSave-Circles/
 ├── backend/              # Server-side logic, database operations
 ├── assets/               # UI/UX assets, icons, logos
 └── README.md             # Project summary
-
 ```
 
 ## 🚀 Getting Started
