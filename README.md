@@ -12,7 +12,7 @@ This platform enhances Paluwagan with the following features:
 -  Activity Monitoring
 -  Financial Transparency
 
-##  DICL-Model (Data-Informed Credit Logic)
+##  DICL-Model (Data-Informed Credit Logic) dhan,iber,cristian,luis
 
 Located in the `/DICL-Model` directory, this component is designed to provide **Alternative Credit Scoring** using machine learning.
 
@@ -38,7 +38,7 @@ NDSTOC-PalSave-Circles/
 ├── DICL-Model/           # Machine learning models for credit scoring
 ├── client/             # Web or mobile frontend implementation
 ├── server/              # Server-side logic, database operations
-├── docs/               # Team Presentation Pitch Slider
+├── docs/               # Team Presentation Pitch Slides
 └── README.md             # Project summary
 ```
 
@@ -62,4 +62,4 @@ _Not intended for commercial use._
 
 ---
 
-Feel free to contribute or raise issues. Let’s modernize the Paluwagan system together!
+To modernizing the Paluwagan system!!!
